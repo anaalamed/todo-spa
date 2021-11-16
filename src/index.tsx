@@ -4,6 +4,8 @@ import store from "./state/configure.store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { GlobalStyles } from "./styles/reset.css";
+import './initializeApp';
+
 
 const render = () => {
   const App = require("./view/App.view").default;

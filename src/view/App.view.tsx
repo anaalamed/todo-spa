@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
-import Home from "./pages/Home.page";
-import Joker from "./pages/Joker.page";
+import Home from "./pages/Profile.page";
+import Todos from "./pages/Todos.page";
+
 import Footer from "./Footer.view";
 import TopBar from "./TopBar.view";
 
@@ -11,8 +12,10 @@ const App = () => {
     <Box>
       <TopBar />
 
-      <Route path="/" exact component={Home} />
-      <Route path="/quotes" exact component={Joker} />
+      <Main>
+        <Route path="/" exact component={Home} />
+        <Route path="/todos" exact component={Todos} />
+      </Main>
 
       <Footer />
     </Box>
@@ -27,4 +30,9 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Main = styled.main`
+  margin-top: 3rem;
+  width: 100%;
 `;

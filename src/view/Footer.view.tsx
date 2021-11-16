@@ -4,10 +4,7 @@ import styled from "styled-components";
 const Footer = () => {
   return (
     <Box>
-      <a href="https://tovana.io" target="_blank" rel="noopener noreferrer">
-        tovana.io
-      </a>
-      &nbsp; learn and thrive &nbsp;
+      Todo App
     </Box>
   );
 };
@@ -22,4 +19,5 @@ const Box = styled.footer`
   align-items: center;
   color: inherit;
   text-decoration: none;
+  background: greenyellow;
 `;

@@ -1,12 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import Login from '../components/ProfilePage/LogIn'
+import Profile from "../components/ProfilePage/Profile";
+import SignUp from "../components/ProfilePage/SignUp";
+import UpdateProfile from "../components/ProfilePage/UpdateProfile";
 
 const Home = () => {
   return (
     <Main>
-      <Logo src="logo-tovana.png" alt="Tovana logo" />
-      <Title>React TS template</Title>
-      <Description>bla-bla-bla</Description>
+      {/* <Logo src="logo-tovana.png" alt="Tovana logo" /> */}
+      {/* <Title>React TS template</Title> */}
+      {/* <Description>bla-bla-bla</Description> */}
+
+      <SignUp></SignUp>
+      <Login></Login>
+      <Profile></Profile>
+      <UpdateProfile></UpdateProfile>
     </Main>
   );
 };
@@ -14,13 +23,16 @@ export default Home;
 
 const Main = styled.main`
   height: 100%;
+  width: 100%;
   padding: 5rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: navy;
 `;
+
 const Logo = styled.img`
   width: 42rem;
   border-radius: 0.6rem;
