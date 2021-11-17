@@ -108,7 +108,7 @@ export default function UpdateProfileScreen() {
 
                     {/* <ColorPicker currentColor={color} setColor={setColor}></ColorPicker> */}
 
-                    <Button title="Submit" onPress={handleSubmit(onSubmit)} >Update</Button>
+                    <Button title="Submit" onClick={handleSubmit(onSubmit)} >Update</Button>
                 </Form>
             </Box>
         </>

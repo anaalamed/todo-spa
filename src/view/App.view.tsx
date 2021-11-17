@@ -33,6 +33,9 @@ const Box = styled.div`
 `;
 
 const Main = styled.main`
-  margin-top: 3rem;
+  margin-top: 7rem;
+  flex: 1;
   width: 100%;
+  height: 100%;
+  background: navy;
 `;

@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from "react-redux";
-// import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
 
 // import UpdateTodo from './ModalUpdateTodo';
-// import ModalDelete from './ModalDeleteTodo';
-// import MenuTodo from './MenuTodo';
 
 import { deleteTodo, toggleComplete } from "../../../state/slices/todos.slice";
 import { deleteTodoFunc, toggleCompleteTodoFunc } from '../../../initializeApp';
 // import ModalTodoDetails from './ModalTodoDetails';
 import { Todo } from '../../../../types';
 import { StyledText } from '../../../styles/reset.css';
+import MenuTodo from './MenuTodo';
+import ModalTodoDetails from './ModalTodoDetails';
 
 interface Props {
   todo: Todo,
@@ -27,36 +26,33 @@ const Profile: React.FC<Props> = ({ todo, order }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [isMenuVisible, setMenuVisible] = useState(false);
 
-  // const handleToggleComplete = async () => {
-  //     toggleCompleteTodoFunc(todo)
-  //         .then(res => {
-  //             dispatch(toggleComplete({ id: todo.id, completed: !todo.completed, updatedAt: res.data.updatedAt }));
-  //             setMenuVisible(false)
-  //         })
-  //         .catch((error) => {
-  //             console.log(error);
-  //         });
-  // }
+  const handleToggleComplete = async () => {
+    toggleCompleteTodoFunc(todo)
+      .then(res => {
+        dispatch(toggleComplete({ id: todo.id, completed: !todo.completed, updatedAt: res.data.updatedAt }));
+        setMenuVisible(false)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   return (
     <>
       <Box color={todo.color || "lightcyan"}>
         <Main>
-          {/* <IsDoneBox done={todo.completed} onPress={handleToggleComplete}>
-                        {todo.completed ? (<BtnText><FontAwesomeIcon icon='check' /> </BtnText>) : null}
-                    </IsDoneBox> */}
+          <IsDoneBox done={todo.completed} onClick={handleToggleComplete}>
+            {todo.completed ? (<FontAwesomeIcon icon={faCheck} />) : null}
+          </IsDoneBox>
 
           {todo.important ? <StyledText style={{ color: "red", fontSize: 30, paddingBottom: 0, paddingRight: 5 }}>!</StyledText> : null}
+          <ModalTodoDetails todo={todo} setModalVisible={setModalVisible}></ModalTodoDetails>
 
-          <TodoText onPress={setModalVisible}>{todo.title} </TodoText>
+          <Button onClick={() => setMenuVisible(!isMenuVisible)}><FontAwesomeIcon icon={faEllipsisH} /> </Button>
         </Main>
 
-        {/* {isModalVisible ? <ModalTodoDetails todo={todo} setModalVisible={setModalVisible}></ModalTodoDetails> : null} */}
 
-
-        {/* {isMenuVisible ? <MenuTodo todo={todo} isMenuVisible={isMenuVisible} setMenuVisible={setMenuVisible} handleToggleComplete={handleToggleComplete}></MenuTodo> : null} */}
-        {/* <Button style={{ position: "absolute", right: 0, top: 3 }} onPress={() => setMenuVisible(!isMenuVisible)}><BtnText><FontAwesome name='ellipsis-h' /> </BtnText></Button> */}
-
+        {isMenuVisible ? <MenuTodo todo={todo} isMenuVisible={isMenuVisible} setMenuVisible={setMenuVisible} handleToggleComplete={handleToggleComplete}></MenuTodo> : null}
       </Box>
     </>
   );
@@ -73,7 +69,6 @@ const Box = styled.div`
   background: ${props => props.color};
   border: 1px solid navy;
 
-
   width: 95%;
   padding: 10px;
   padding-left: 20px;
@@ -87,6 +82,7 @@ const Box = styled.div`
 `;
 
 const Main = styled.div`
+  display: flex;
   flex-direction: row;
   align-items: center;
 `;
@@ -112,12 +108,6 @@ const TodoText = styled.h2`
   font-weight: bold;
 `;
 
-const BtnText = styled.h2`
-  color: navy;
-  font-weight: bold;
-  text-align: center;
-`;
-
 const Button = styled.button`
   background: greenyellow;
   padding: 2px;
@@ -130,7 +120,7 @@ const Button = styled.button`
   border-bottom-right-radius: 50px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 10px;
+
+  position: absolute;
+  left: 80%;
 `;
-
-
-

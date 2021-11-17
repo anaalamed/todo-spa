@@ -64,8 +64,6 @@ export default function TodosPage() {
 
                 {loggedIn && todos.length === 0 ? <MyText>There is no to do yet... Please add!</MyText> : null}
             </Section>
-
-            {/* <Image source={require('../assets/images/logoTransp.png')} /> */}
         </Box>
     );
 }
@@ -75,7 +73,6 @@ const Box = styled.main`
   height: 100%;
   width: 100%;
   flex: 1;
-  /* padding: 5rem 0; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,8 +81,11 @@ const Box = styled.main`
 `;
 
 const Section = styled.div`
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  width: 95%;
+  justify-content: center;
+  width: 80%;
   padding-left: 10px;
   padding-right: 10px;
   margin: 10px;

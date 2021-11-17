@@ -1,22 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/root.reducer";
 import { margin } from "polished";
+import { Row } from "../styles/reset.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import ModalAddTodo from "./components/TodosPage/ModalAddTodo";
+import Modal from "./components/TodosPage/ModalAddTodo";
+
+
 
 const TopBar = () => {
   const { me, loggedIn } = useSelector((state: RootState) => state.users);
-
+  const [isAddVisible, setAddVisible] = useState(false)
 
   return (
     <Header>
-      <SLink to="/">
-        <Logo src="logo.png" alt="Todo logo" />
-      </SLink>
+      <SLink to="/"> <Logo src="logo.png" alt="Todo logo" /></SLink>
       <SLink to="/">Home</SLink>
       <SLink to="/todos">Todos</SLink>
-      <p style={{ marginLeft: 100 }}>{me.name || "guest"}</p>
+
+      <Row>
+        <p style={{ marginLeft: 100 }}>{me.name || "guest"}</p>
+        {/* <FontAwesomeIcon onClick={() => setAddVisible(true)} icon={faPlus} ></FontAwesomeIcon> */}
+      </Row>
+
+      {/* {isAddVisible ? <ModalAddTodo></ModalAddTodo> : null} */}
+      <Modal></Modal>
+
     </Header>
   );
 };
