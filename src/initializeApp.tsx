@@ -1,6 +1,12 @@
-import { getApp, initializeApp } from 'firebase/app';
-import { connectFunctionsEmulator, getFunctions, httpsCallable } from 'firebase/functions';
+import { initializeApp } from 'firebase/app';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 import { getStorage } from "firebase/storage";
+import firebase from 'firebase/compat/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore' // <- needed if using firestore
+import { ReactReduxFirebaseProvider, firebaseReducer } from 'react-redux-firebase'
+import { createFirestoreInstance, firestoreReducer } from 'redux-firestore'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCbtjWerogpa2Xm2JGLZRE6yLh_7Hz7tTo",
@@ -13,13 +19,17 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore();
+// firebase.firestore().settings({ timestanpsSnapsots: true })
+
+const storage = getStorage();
+
+
+
 const functions = getFunctions();
 
 // const functions = getFunctions(getApp());
 // connectFunctionsEmulator(functions, "localhost", 5001);
-
-const storage = getStorage();
-
 
 export const registerFunc = httpsCallable(functions, 'register');
 export const getUserFunc = httpsCallable(functions, 'getUser');
@@ -32,3 +42,5 @@ export const addTodoFunc = httpsCallable(functions, 'addTodo');
 export const deleteTodoFunc = httpsCallable(functions, 'deleteTodo');
 export const updateTodoFunc = httpsCallable(functions, 'updateTodo');
 export const toggleCompleteTodoFunc = httpsCallable(functions, 'toggleCompleteTodo');
+
+export default firebase;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
 import styled from 'styled-components';
+import { compose } from 'redux'
 
 // import SearchTodo from '../components/TodosScreen/SearchTodo';
 // import Todo from '../components/TodosScreen/Todo';
@@ -12,14 +13,19 @@ import { RootState } from '../../state/root.reducer';
 import { getTodosFunc } from '../../initializeApp';
 import { Title } from '../../styles/reset.css';
 import Todo from '../components/TodosPage/Todo';
-// import { FontAwesome } from '@expo/vector-icons';
+import { firestoreConnect, useFirestoreConnect } from 'react-redux-firebase'
+import { getFirestore } from 'firebase/firestore';
+import SearchTodo from '../components/TodosPage/SearchTodo';
+
+const firestore = getFirestore();
 
 
-
-export default function TodosPage() {
+function TodosPage() {
 
     const dispatch = useDispatch();
     const { todos, filteredTodos, is_loading, error_msg } = useSelector((state: RootState) => state.todos);
+    // const { filteredTodos, is_loading, error_msg } = useSelector((state: RootState) => state.todos);
+
     const { me, loggedIn, bgColor } = useSelector((state: RootState) => state.users);
 
     useEffect(() => {
@@ -41,7 +47,7 @@ export default function TodosPage() {
         <Box color={bgColor}>
             <Title >Todos</Title>
 
-            {/* {me.email ? (<SearchTodo></SearchTodo>) : null} */}
+            {loggedIn ? (<SearchTodo></SearchTodo>) : null}
 
             {/* <Separator /> */}
             <Section>
@@ -62,11 +68,19 @@ export default function TodosPage() {
                     ) :
                     (<MyText>Please log in to see your todos here! </MyText>)}
 
-                {loggedIn && todos.length === 0 ? <MyText>There is no to do yet... Please add!</MyText> : null}
+                {/* {loggedIn && todos.length === 0 ? <MyText>There is no to do yet... Please add!</MyText> : null} */}
             </Section>
         </Box>
     );
 }
+
+export default TodosPage;
+// export default compose(
+//     firestoreConnect(() => ['todos']), // or { collection: 'todos' }
+//     connect((state: RootState, props) => ({
+//         todos: state.firestore.ordered.todos
+//     }))
+// )(TodosPage)
 
 
 const Box = styled.main`

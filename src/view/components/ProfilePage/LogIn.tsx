@@ -8,9 +8,10 @@ import { loggedIn } from '../../../state/slices/users.slice'
 import { getUserFunc } from '../../../initializeApp'
 import { Button, Input, InputContainer, InputIcon, StyledText, Title } from "../../../styles/reset.css";
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
+import { useHistory } from "react-router-dom";
 
 export default function LoginScreen() {
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const { control, handleSubmit, formState: { errors } } = useForm();
 
@@ -24,7 +25,7 @@ export default function LoginScreen() {
                         console.log(res);
                         let user = res.data;
                         dispatch(loggedIn(user));
-                        // navigation.push('Root');
+                        history.push('/');
                     })
                     .catch((error) => {
                         alert('something went wrong1');

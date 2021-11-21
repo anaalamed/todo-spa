@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from "react-redux";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
-
-// import UpdateTodo from './ModalUpdateTodo';
-
-import { deleteTodo, toggleComplete } from "../../../state/slices/todos.slice";
-import { deleteTodoFunc, toggleCompleteTodoFunc } from '../../../initializeApp';
-// import ModalTodoDetails from './ModalTodoDetails';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import { toggleComplete } from "../../../state/slices/todos.slice";
+import { toggleCompleteTodoFunc } from '../../../initializeApp';
 import { Todo } from '../../../../types';
 import { StyledText } from '../../../styles/reset.css';
 import MenuTodo from './MenuTodo';
@@ -20,10 +16,7 @@ interface Props {
 }
 
 const Profile: React.FC<Props> = ({ todo, order }) => {
-
   const dispatch = useDispatch();
-  const [update, setUpdate] = useState(false);
-  const [isModalVisible, setModalVisible] = useState(false);
   const [isMenuVisible, setMenuVisible] = useState(false);
 
   const handleToggleComplete = async () => {
@@ -46,11 +39,10 @@ const Profile: React.FC<Props> = ({ todo, order }) => {
           </IsDoneBox>
 
           {todo.important ? <StyledText style={{ color: "red", fontSize: 30, paddingBottom: 0, paddingRight: 5 }}>!</StyledText> : null}
-          <ModalTodoDetails todo={todo} setModalVisible={setModalVisible}></ModalTodoDetails>
+          <ModalTodoDetails todo={todo} ></ModalTodoDetails>
 
           <Button onClick={() => setMenuVisible(!isMenuVisible)}><FontAwesomeIcon icon={faEllipsisH} /> </Button>
         </Main>
-
 
         {isMenuVisible ? <MenuTodo todo={todo} isMenuVisible={isMenuVisible} setMenuVisible={setMenuVisible} handleToggleComplete={handleToggleComplete}></MenuTodo> : null}
       </Box>
@@ -99,13 +91,6 @@ const IsDoneBox = styled.button`
   border-bottom-right-radius: 50px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 10px;
-`;
-
-const TodoText = styled.h2`
-  color: navy;
-  font-size: 20px;
-  width: 75%;
-  font-weight: bold;
 `;
 
 const Button = styled.button`

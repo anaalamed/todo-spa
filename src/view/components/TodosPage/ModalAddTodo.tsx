@@ -71,7 +71,7 @@ function ModalAddTodo() {
 
     return (
         <div>
-            <FontAwesomeIcon onClick={() => setIsOpen(true)} icon={faPlus} />
+            <Icon onClick={() => setIsOpen(true)} icon={faPlus} />
 
             <Modal
                 isOpen={modalIsOpen}
@@ -134,4 +134,11 @@ const IsImportantBox = styled.button`
   border-bottom-right-radius: 50px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 10px;
+`;
+
+const Icon = styled(FontAwesomeIcon)`
+  color: navy;
+  font-weight: bold;
+  margin-right: 3rem;
+  font-size: 2rem;
 `;

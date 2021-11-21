@@ -7,9 +7,11 @@ import { loggedOut } from "../../../state/slices/users.slice";
 import { removeTodos } from "../../../state/slices/todos.slice";
 import { RootState } from '../../../state/root.reducer';
 import { Button, Row, Title } from '../../../styles/reset.css';
+import { useHistory } from 'react-router-dom';
 
 
 const Profile: React.FC = () => {
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const { me } = useSelector((state: RootState) => state.users);
@@ -27,7 +29,7 @@ const Profile: React.FC = () => {
 
   return (
     <>
-      <Title>My Profile</Title>
+      {/* <Title>My Profile</Title> */}
       <Box>
         <StyledImage src={me.photoURL || defaultProfileImage} ></StyledImage>
 
@@ -37,7 +39,7 @@ const Profile: React.FC = () => {
         <Field>About: <ValueField>{me.about}</ValueField></Field>
 
         <Row>
-          <ProfileButton onClick={() => console.log("navigation")} >Update</ProfileButton>
+          <ProfileButton onClick={() => history.push('/updateProfile')} >Update</ProfileButton>
           <ProfileButton onClick={handleLogOut} >Log Out</ProfileButton>
         </Row>
       </Box>
@@ -75,6 +77,7 @@ const StyledImage = styled.img`
 
 const Field = styled.span`
   color: navy;
+  margin: 5px;
 `;
 
 const ValueField = styled.span`

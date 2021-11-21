@@ -18,28 +18,25 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
+export const Main = styled.main`
+  height: 100%;
+  width: 100%;
+  /* padding: 5rem 0; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: navy;
+`;
 
 export const Title = styled.h1`
   font-size: 25px;
   font-weight: bold;
   color: greenyellow;
-  margin: 5px;
+  margin: 10px;
+  text-align: center;
 `;
-
-// export const Button = styled.button`
-//   background-color: greenyellow;
-//   padding: 10px;
-//   border-radius: 10px;
-//   width: 100px;
-//   border: 1px solid navy;
-
-// border-top-right-radius: 10px;
-// border-bottom-right-radius: 50px;
-// border-top-left-radius: 50px;
-// border-bottom-left-radius: 10px;
-
-//   box-shadow: 10px 5px 5px yellow;
-// `;
 
 export const Button = styled.button`
   background: greenyellow;

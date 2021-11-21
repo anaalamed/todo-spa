@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/root.reducer";
 import { margin } from "polished";
-import { Row } from "../styles/reset.css";
+import { Row, StyledText } from "../styles/reset.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ModalAddTodo from "./components/TodosPage/ModalAddTodo";
-import Modal from "./components/TodosPage/ModalAddTodo";
 
 
 
@@ -22,13 +21,10 @@ const TopBar = () => {
       <SLink to="/">Home</SLink>
       <SLink to="/todos">Todos</SLink>
 
-      <Row>
-        <p style={{ marginLeft: 100 }}>{me.name || "guest"}</p>
-        {/* <FontAwesomeIcon onClick={() => setAddVisible(true)} icon={faPlus} ></FontAwesomeIcon> */}
+      <Row style={{ justifyContent: "flex-end" }}>
+        <HelloText style={{ color: "navy", fontWeight: "bold" }}>Hi, {me.name || "guest"}</HelloText>
+        {loggedIn ? (<ModalAddTodo></ModalAddTodo>) : null}
       </Row>
-
-      {/* {isAddVisible ? <ModalAddTodo></ModalAddTodo> : null} */}
-      <Modal></Modal>
 
     </Header>
   );
@@ -44,7 +40,9 @@ const Header = styled.header`
   padding: 1.5rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   z-index: 101;
+  width: 100%;
 `;
 
 const SLink = styled(Link)`
@@ -61,4 +59,8 @@ const Logo = styled.img`
   width: 4rem;
   cursor: pointer;
   border-radius: 50%;
+`;
+
+const HelloText = styled.p`
+  margin-right: 2rem;
 `;

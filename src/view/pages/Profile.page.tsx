@@ -1,54 +1,42 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { RootState } from "../../state/root.reducer";
+import { Button, Main, Row, Title } from "../../styles/reset.css";
 import Login from '../components/ProfilePage/LogIn'
 import Profile from "../components/ProfilePage/Profile";
 import SignUp from "../components/ProfilePage/SignUp";
 import UpdateProfile from "../components/ProfilePage/UpdateProfile";
 
-const Home = () => {
+import '../../assets/logo.png'
+
+const ProfilePage = () => {
+  const history = useHistory();
+  const { me, loggedIn } = useSelector((state: RootState) => state.users);
+
   return (
     <Main>
-      {/* <Logo src="logo-tovana.png" alt="Tovana logo" /> */}
-      {/* <Title>React TS template</Title> */}
-      {/* <Description>bla-bla-bla</Description> */}
+      <Title style={{ margin: 30 }}>My profile</Title>
 
-      <SignUp></SignUp>
-      <Login></Login>
-      <Profile></Profile>
-      <UpdateProfile></UpdateProfile>
+
+      {loggedIn ? <Profile></Profile> : (
+        <Row style={{ margin: 30 }}>
+          <Button onClick={() => history.push('/signup')}>Sign Up</Button>
+          <Button onClick={() => history.push('/login')}>Log In</Button>
+        </Row>
+      )}
+
+      <Logo src="logo.png"></Logo>
     </Main>
   );
 };
-export default Home;
+export default ProfilePage;
 
-const Main = styled.main`
-  height: 100%;
-  width: 100%;
-  /* padding: 5rem 0; */
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: navy;
-`;
 
 const Logo = styled.img`
-  width: 42rem;
+  width: 30rem;
   border-radius: 0.6rem;
 `;
-const Title = styled.h1`
-  margin-bottom: 1rem;
-  line-height: 1.15;
-  font-size: 4rem;
-  text-align: center;
-  background-color: white;
-  padding: 2.2rem 4.4rem;
-  border-radius: 0.4rem;
-  box-shadow: 0.2rem 0.2rem 2rem rgba(184, 187, 200, 0.3);
-`;
-const Description = styled.p`
-  line-height: 2;
-  text-align: center;
-  font-size: 1.6rem;
-`;
+
+

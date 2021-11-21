@@ -30,7 +30,6 @@ Modal.setAppElement('#root');
 
 interface Props {
     todo: Todo,
-    setModalVisible(data: boolean): void
 }
 
 const ModalDetailsTodo: React.FC<Props> = ({ todo }) => {
@@ -82,5 +81,5 @@ const TodoText = styled.h2`
   font-size: 20px;
   width: 20rem;
   font-weight: bold;
-  background: pink;
+  /* background: pink; */
 `;

@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Route } from "react-router-dom";
-import Home from "./pages/Profile.page";
 import Todos from "./pages/Todos.page";
 
 import Footer from "./Footer.view";
 import TopBar from "./TopBar.view";
+import SignUp from "./components/ProfilePage/SignUp";
+import LogIn from "./components/ProfilePage/LogIn";
+import UpdateProfile from "./components/ProfilePage/UpdateProfile";
+import ProfilePage from "./pages/Profile.page";
 
 const App = () => {
   return (
@@ -13,8 +16,12 @@ const App = () => {
       <TopBar />
 
       <Main>
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact component={ProfilePage} />
         <Route path="/todos" exact component={Todos} />
+        <Route path="/signup" exact component={SignUp} />
+        <Route path="/login" exact component={LogIn} />
+        <Route path="/updateProfile" exact component={UpdateProfile} />
+
       </Main>
 
       <Footer />

@@ -1,18 +1,21 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import styled from 'styled-components';
-import { Button, Input, InputContainer, InputIcon, StyledText, Title } from '../../../styles/reset.css';
+import { Button, Input, InputContainer, InputIcon, Main, StyledText, Title } from '../../../styles/reset.css';
 import { registerFunc } from '../../../initializeApp'
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router-dom";
 
 export default function SignupScreen() {
+    const history = useHistory();
 
     const { control, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
         registerFunc(data)
             .then(res => {
-                alert('registration successfuly')
+                alert('registration successfuly');
+                history.push('/login');
             })
             .catch((error) => {
                 alert('something went wrong');
@@ -25,7 +28,7 @@ export default function SignupScreen() {
 
 
     return (
-        <>
+        <Main>
             <Title>Registration</Title>
             <Box>
                 <Form>
@@ -99,7 +102,7 @@ export default function SignupScreen() {
                     <Button title="Submit" onClick={handleSubmit(onSubmit)} >Sign Up</Button>
                 </Form>
             </Box>
-        </>
+        </Main>
 
     );
 }
