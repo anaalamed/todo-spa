@@ -35,6 +35,7 @@ export const Title = styled.h1`
   font-weight: bold;
   color: greenyellow;
   margin: 10px;
+  margin-top: 2rem;
   text-align: center;
 `;
 

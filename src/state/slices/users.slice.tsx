@@ -4,14 +4,14 @@ import { User } from '../../../types';
 interface UserState {
   me: User,
   loggedIn: boolean,
-  bgColor: string
+  // bgColor: string
 }
 
 
 const initialState: UserState = {
   me: {},
-  loggedIn: false,
-  bgColor: "navy"
+  loggedIn: false
+  // bgColor: "navy"
 }
 
 const users_slice = createSlice({
@@ -33,7 +33,8 @@ const users_slice = createSlice({
       state.me.photoURL = action.payload;
     },
     bgColorChoosen: (state, action) => {
-      state.bgColor = action.payload;
+      console.log(action.payload);
+      state.me.bgColor = action.payload.color;
     },
   }
 });

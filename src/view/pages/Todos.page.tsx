@@ -13,14 +13,14 @@ import { getFirestore } from 'firebase/firestore';
 import SearchTodo from '../components/TodosPage/SearchTodo';
 import StartButtons from '../components/StartButtons';
 
-const firestore = getFirestore();
-
 
 function TodosPage() {
 
     const dispatch = useDispatch();
     const { todos, filteredTodos, is_loading, error_msg } = useSelector((state: RootState) => state.todos);
-    const { me, loggedIn, bgColor } = useSelector((state: RootState) => state.users);
+    const { me, loggedIn } = useSelector((state: RootState) => state.users);
+
+    console.log(me.bgColor);
 
     useEffect(() => {
         if (me.email) {
@@ -38,7 +38,7 @@ function TodosPage() {
     }, [me]);
 
     return (
-        <Box color={bgColor}>
+        <Box color={me.bgColor || "navy"}>
             <Title >Todos</Title>
 
             {loggedIn ? (<SearchTodo></SearchTodo>) : null}
@@ -88,7 +88,7 @@ const Box = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: ${(props) => props.color || "navy"};
+  background: ${(props) => props.color};
 `;
 
 const Section = styled.div`

@@ -17,4 +17,5 @@ export interface User {
     phoneNumber?: string
     photoURL?: string
     about?: string
+    bgColor?: string
 }

@@ -41,7 +41,7 @@ const Box = styled.div`
 
 const Main = styled.main`
   margin-top: 8rem;
-  padding-top: 2rem;
+  /* padding-top: 2rem; */
   flex: 1;
   width: 100%;
   height: 100%;

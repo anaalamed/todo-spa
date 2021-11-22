@@ -26,7 +26,6 @@ const UserImagePicker: React.FC<Props> = ({ setPhotoUrl, photoUrl }) => {
         addUpdateIndex: number[] | undefined
     ) => {
         // data for submit
-        console.log(imageList, addUpdateIndex);
         setImages(imageList);
     };
 
@@ -57,11 +56,8 @@ const UserImagePicker: React.FC<Props> = ({ setPhotoUrl, photoUrl }) => {
         );
     };
 
-    console.log(images)
-
-
     return (
-        <Row style={{ justufyContent: "center" }}>
+        <Row style={{ justifyContent: "center" }}>
             <Image src={images[0]?.dataURL || photoUrl} style={{ alignSelf: "flex-start" }} />
 
             <ImageUploading

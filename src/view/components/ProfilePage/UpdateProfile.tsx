@@ -12,6 +12,7 @@ import { faUser, faMobile, faInfo } from "@fortawesome/free-solid-svg-icons";
 import UploadPhoto from "./UploadPhoto";
 import { useHistory } from "react-router-dom";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import ColorPicker from "./ColorPicker";
 // import UploadPhoto from '../../../components/ProfileScreen/UploadPhoto';
 // import ColorPicker from '../components/ProfileScreen/ColorPicker';
 
@@ -21,8 +22,8 @@ export default function UpdateProfileScreen() {
     const dispatch = useDispatch();
 
     const { control, handleSubmit, formState: { errors } } = useForm();
-    const { me, bgColor } = useSelector((state: RootState) => state.users);
-    const [color, setColor] = useState(bgColor);
+    const { me } = useSelector((state: RootState) => state.users);
+    const [color, setColor] = useState(me.bgColor);
     const [photoUrl, setPhotoUrl] = useState(me.photoURL || 'https://sharedigitalcard.com/user/uploads/user.png');
 
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -37,7 +38,8 @@ export default function UpdateProfileScreen() {
         updateUserFunc({ id: me.id, bgColor: color, photoURL: photoUrl, ...data })
             .then(res => {
                 dispatch(updatedProfile({ id: me.id, email: me.email, photoURL: photoUrl, ...data }))
-                dispatch(bgColorChoosen(color));
+                console.log(color)
+                dispatch(bgColorChoosen({ color: color }));
                 history.push('/');
             })
             .catch((error) => {
@@ -112,7 +114,7 @@ export default function UpdateProfileScreen() {
                     {errors.about && <StyledText>This is not valid.</StyledText>}
 
 
-                    {/* <ColorPicker currentColor={color} setColor={setColor}></ColorPicker> */}
+                    <ColorPicker currentColor={color} setColor={setColor}></ColorPicker>
 
                     <Button title="Submit" onClick={handleSubmit(onSubmit)} >Update</Button>
                 </Form>
