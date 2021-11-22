@@ -3,18 +3,16 @@ import { useForm, Controller } from "react-hook-form";
 import styled from 'styled-components';
 import { getAuth } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { faUser, faMobile, faInfo } from "@fortawesome/free-solid-svg-icons";
 
+import { updateUserFunc } from '../../../initializeApp';
 import { RootState } from "../../../state/root.reducer";
 import { updatedProfile, bgColorChoosen } from "../../../state/slices/users.slice";
-import { updateUserFunc } from '../../../initializeApp';
 import { Button, Input, InputContainer, InputIcon, StyledText, Title } from "../../../styles/reset.css";
-import { faUser, faMobile, faInfo } from "@fortawesome/free-solid-svg-icons";
 import UploadPhoto from "./UploadPhoto";
-import { useHistory } from "react-router-dom";
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import ColorPicker from "./ColorPicker";
-// import UploadPhoto from '../../../components/ProfileScreen/UploadPhoto';
-// import ColorPicker from '../components/ProfileScreen/ColorPicker';
+import { devices } from "../../../styles/responsive";
 
 
 export default function UpdateProfileScreen() {
@@ -23,14 +21,11 @@ export default function UpdateProfileScreen() {
 
     const { control, handleSubmit, formState: { errors } } = useForm();
     const { me } = useSelector((state: RootState) => state.users);
+
     const [color, setColor] = useState(me.bgColor);
     const [photoUrl, setPhotoUrl] = useState(me.photoURL || 'https://sharedigitalcard.com/user/uploads/user.png');
 
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
     const phoneRegex = /^[0-9()-]+$/;
-    const urlRegex = /^(https?:\/\/)?[0-9a-zA-Z]+\.[-_0-9a-zA-Z]+\.[0-9a-zA-Z]+$/;
-    const { id } = useSelector((state: RootState) => state.users.me);
 
     const onSubmit = (data) => {
         const auth = getAuth();
@@ -58,7 +53,7 @@ export default function UpdateProfileScreen() {
                         defaultValue={me.name}
                         control={control}
                         rules={{
-                            // required: true,
+                            required: true,
                         }}
                         render={({ field: { onChange, value } }) => (
                             <InputContainer>
@@ -124,7 +119,6 @@ export default function UpdateProfileScreen() {
     );
 }
 
-
 const Box = styled.div`
   display: flex;
   flex-direction: column;
@@ -139,6 +133,10 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media ${devices.laptop} {
+    width: 80%;
+  }
 `;
 
 const About = styled.textarea`
@@ -158,7 +156,5 @@ const About = styled.textarea`
 
   box-shadow: 10px 5px 5px greenyellow;
   overflow: hidden;
+  resize: none;
 `;
-
-
-

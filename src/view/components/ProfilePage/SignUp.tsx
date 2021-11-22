@@ -1,14 +1,14 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import styled from 'styled-components';
-import { Button, Input, InputContainer, InputIcon, Main, StyledText, Title } from '../../../styles/reset.css';
-import { registerFunc } from '../../../initializeApp'
 import { faEnvelope, faLock, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
 
+import { registerFunc } from '../../../initializeApp'
+import { Button, Input, InputContainer, InputIcon, Main, StyledText, Title } from '../../../styles/reset.css';
+
 export default function SignupScreen() {
     const history = useHistory();
-
     const { control, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
@@ -37,7 +37,7 @@ export default function SignupScreen() {
                         defaultValue=""
                         control={control}
                         rules={{
-                            // required: true,
+                            required: true,
                         }}
                         render={({ field: { onChange, value } }) => (
                             <InputContainer>
@@ -58,9 +58,9 @@ export default function SignupScreen() {
                         defaultValue=""
                         control={control}
                         rules={{
-                            // required: true,
-                            // minLength: 8,
-                            // pattern: emailRegex
+                            required: true,
+                            minLength: 8,
+                            pattern: emailRegex
                         }}
                         render={({ field: { onChange, value } }) => (
                             <InputContainer>
@@ -81,9 +81,9 @@ export default function SignupScreen() {
                         defaultValue=""
                         control={control}
                         rules={{
-                            // required: true,
-                            // maxLength: 100,
-                            // pattern: passwordRegex
+                            required: true,
+                            maxLength: 100,
+                            pattern: passwordRegex
                         }}
                         render={({ field: { onChange, value } }) => (
                             <InputContainer>
@@ -111,7 +111,6 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 10px; */
   width: 100%;
 `;
 

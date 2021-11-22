@@ -1,20 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { RootState } from "../../state/root.reducer";
-import { Button, Main, Row, Title } from "../../styles/reset.css";
-import Login from '../components/ProfilePage/LogIn'
-import Profile from "../components/ProfilePage/Profile";
-import SignUp from "../components/ProfilePage/SignUp";
-import UpdateProfile from "../components/ProfilePage/UpdateProfile";
 
-import '../../assets/logo.png'
+import { RootState } from "../../state/root.reducer";
+import { Main, Title } from "../../styles/reset.css";
+import Profile from "../components/ProfilePage/Profile";
 import StartButtons from "../components/StartButtons";
+import '../../assets/logo.png'
 
 const ProfilePage = () => {
-  const history = useHistory();
-  const { me, loggedIn } = useSelector((state: RootState) => state.users);
+  const { loggedIn } = useSelector((state: RootState) => state.users);
 
   return (
     <Main>
@@ -28,10 +23,7 @@ const ProfilePage = () => {
 };
 export default ProfilePage;
 
-
 const Logo = styled.img`
   width: 30rem;
   border-radius: 0.6rem;
 `;
-
-

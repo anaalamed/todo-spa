@@ -1,15 +1,15 @@
-import { faCheck, faComment, faPencilAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faComment, faPencilAlt, faPlus } from '@fortawesome/free-solid-svg-icons';
+
+import { updateTodoFunc } from '../../../initializeApp';
 import { Todo } from '../../../../types';
-import { addTodoFunc, updateTodoFunc } from '../../../initializeApp';
 import { RootState } from '../../../state/root.reducer';
-import { addTodo, updateTodo } from '../../../state/slices/todos.slice';
-import { Button, Input, InputContainer, InputIcon, Row, StyledText, Title } from '../../../styles/reset.css';
+import { updateTodo } from '../../../state/slices/todos.slice';
+import { Button, Input, InputContainer, InputIcon, Row, StyledText, Title, TodoIconButton } from '../../../styles/reset.css';
 import ChooseColor from './ChooseColor';
 
 const customStyles = {
@@ -65,7 +65,7 @@ const ModalUpdateTodo: React.FC<Props> = ({ todo, setMenuVisible }) => {
 
   return (
     <div>
-      <IconButton style={{ backgroundColor: "yellow" }} onClick={() => setIsOpen(true)}><FontAwesomeIcon icon={faPencilAlt} /> </IconButton>
+      <TodoIconButton style={{ backgroundColor: "yellow" }} onClick={() => setIsOpen(true)}><FontAwesomeIcon icon={faPencilAlt} /> </TodoIconButton>
 
       <Modal
         isOpen={modalIsOpen}
@@ -121,21 +121,7 @@ const IsImportantBox = styled.button`
   width: 30px;
   height: 20px;
   margin: 12px;
-  /* margin-left: 10px; */
   align-self: flex-start;
-
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 50px;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 10px;
-`;
-
-const IconButton = styled.button`
-  padding: 2px;
-  border-radius: 10px;
-  width: 20px;
-  margin: 2px;
-  border: 1px solid navy;
 
   border-top-right-radius: 10px;
   border-bottom-right-radius: 50px;

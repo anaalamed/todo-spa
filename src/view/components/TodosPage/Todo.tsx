@@ -3,19 +3,21 @@ import styled from 'styled-components';
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faEllipsisH } from '@fortawesome/free-solid-svg-icons';
-import { toggleComplete } from "../../../state/slices/todos.slice";
+
 import { toggleCompleteTodoFunc } from '../../../initializeApp';
 import { Todo } from '../../../../types';
-import { StyledText } from '../../../styles/reset.css';
+import { toggleComplete } from "../../../state/slices/todos.slice";
 import MenuTodo from './MenuTodo';
 import ModalTodoDetails from './ModalTodoDetails';
+import { StyledText } from '../../../styles/reset.css';
+import { devices } from '../../../styles/responsive';
 
 interface Props {
   todo: Todo,
   order: number
 }
 
-const Profile: React.FC<Props> = ({ todo, order }) => {
+const Profile: React.FC<Props> = ({ todo }) => {
   const dispatch = useDispatch();
   const [isMenuVisible, setMenuVisible] = useState(false);
 
@@ -44,7 +46,7 @@ const Profile: React.FC<Props> = ({ todo, order }) => {
           <Button onClick={() => setMenuVisible(!isMenuVisible)}><FontAwesomeIcon icon={faEllipsisH} /> </Button>
         </Main>
 
-        {isMenuVisible ? <MenuTodo todo={todo} isMenuVisible={isMenuVisible} setMenuVisible={setMenuVisible} handleToggleComplete={handleToggleComplete}></MenuTodo> : null}
+        {isMenuVisible ? <MenuTodo todo={todo} setMenuVisible={setMenuVisible} handleToggleComplete={handleToggleComplete}></MenuTodo> : null}
       </Box>
     </>
   );
@@ -66,6 +68,10 @@ const Box = styled.div`
   border-bottom-right-radius: 50px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 10px;
+
+  @media ${devices.laptop} {
+    width: 50%;
+  }
 `;
 
 const Main = styled.div`
@@ -95,7 +101,6 @@ const Button = styled.button`
   padding: 2px;
   border-radius: 10px;
   width: 20px;
-  /* margin-right: 5px; */
   border: 1px solid navy;
 
   border-top-right-radius: 10px;

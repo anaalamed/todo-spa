@@ -3,8 +3,7 @@ import styled from "styled-components";
 
 const Footer = () => {
   return (
-    <Box>
-      Todo App
+    <Box>Todo App
       <Logo src="myLogo.png"></Logo>
     </Box>
   );
@@ -13,7 +12,7 @@ export default Footer;
 
 const Box = styled.footer`
   width: 100%;
-  height: 100px;
+  height: 80px;
   border-top: 1px solid #eaeaea;
   display: flex;
   justify-content: space-around;

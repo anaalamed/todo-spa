@@ -1,8 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import styled from "styled-components";
 import { Button, Row } from "../../styles/reset.css";
-
 
 const StartButtons = () => {
     const history = useHistory();

@@ -2,6 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { devices } from "./responsive";
 
 export const GlobalStyles = createGlobalStyle`
   ${reset}
@@ -37,6 +38,10 @@ export const Title = styled.h1`
   margin: 10px;
   margin-top: 2rem;
   text-align: center;
+
+  @media ${devices.laptop} {
+    font-size: 35px;
+  }
 `;
 
 export const Button = styled.button`
@@ -57,6 +62,11 @@ export const Button = styled.button`
   border-bottom-left-radius: 10px;
 
   box-shadow: 10px 5px 5px yellow;
+
+  @media ${devices.laptop} {
+    /* padding: 1rem; */
+    width: 45%;
+  }
  `;
 
 export const Separator = styled.div`
@@ -67,12 +77,64 @@ export const Separator = styled.div`
   background: #7c7a7aaa;
 `;
 
+export const StyledText = styled.p`
+  font-weight: bold;
+  color: greenyellow;
+  text-align: center;
+  padding-bottom: 10px;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  @media ${devices.laptop} {
+    width: 70%;
+  }
+`;
+
+export const TodoMenuIcon = styled(FontAwesomeIcon)`
+  color: navy;
+  font-weight: bold;
+  margin: 1rem;
+  font-size: 2rem;
+
+  @media ${devices.laptop} {
+    padding: 1rem;
+  }
+`;
+
+export const TodoIconButton = styled.button`
+  padding: 2px;
+  border-radius: 10px;
+  width: 20px;
+  margin: 2px;
+  border: 1px solid navy;
+
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 10px;
+
+  @media ${devices.laptop} {
+    padding: 1rem;
+    width: 35px;
+  }
+`;
+
 // ------------------------------------ Input ------------------------------------
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 70%;
+
+  @media ${devices.laptop} {
+    width: 35%;
+  }
 `;
 
 export const Input = styled.input`
@@ -101,57 +163,3 @@ export const InputIcon = styled(FontAwesomeIcon)`
   left: 50px;
   color: navy;
 `;
-
-export const StyledText = styled.p`
-  font-weight: bold;
-  color: greenyellow;
-  text-align: center;
-  padding-bottom: 10px;
-`;
-
-export const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-`;
-
-
-// ------------------------------------ Modal ------------------------------------
-// export const WrapperModal = styled.View`
-//   height: 100%;
-//   background: rgba(0, 0, 0, 0.8);
-// `;
-
-// export const ModalView = styled.View`
-//   /* flex: 1; */
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   background: navy;
-//   padding: 20px;
-//   margin: 50px;
-//   margin-top: 150px;
-//   margin-bottom: 150px;
-
-//   border-top-right-radius: 10px;
-//   border-bottom-right-radius: 50px;
-//   border-top-left-radius: 50px;
-//   border-bottom-left-radius: 10px;
-// `;
-
-// export const Buttons = styled.View`
-//   flex-direction: row;
-//   justify-content: space-around;
-//   align-items: center;
-//   width: 100%;
-// `;
-
-// export const StyledImage = styled.Image`
-//   height: 100px;
-//   width: 100px;
-//   margin-bottom: 10px;
-//   border-radius: 50px;
-//   align-self: center;
-// `;

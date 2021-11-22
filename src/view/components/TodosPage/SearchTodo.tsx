@@ -1,21 +1,19 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
-
-import { filterTodos } from '../../../state/slices/todos.slice';
-import { RootState } from '../../../state/root.reducer';
-import { InputContainer, InputIcon } from '../../../styles/reset.css';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
+import { filterTodos } from '../../../state/slices/todos.slice';
+import { RootState } from '../../../state/root.reducer';
+import { InputContainer } from '../../../styles/reset.css';
+import { devices } from '../../../styles/responsive';
 
 export default function SearchTodo() {
   const { todos } = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
 
   const handleSearch = (e) => {
-
     let filtered = todos.filter(todo =>
       todo.title.toLowerCase().includes(e.target.value.toLowerCase())
     )
@@ -48,25 +46,28 @@ const Input = styled.input`
   color: navy;
   padding-left: 20px;
   width: 270px;
-  border: 1px solid navy;
+  border: 3px solid navy;
 
   border-top-left-radius: 50px;
   border-bottom-left-radius: 20px;
+
+  @media ${devices.laptop} {
+    width: 400px;
+  }
 `;
 
 const Button = styled.button`
   background: #6CBF40;
   padding: 10px;
-  border: 1px solid navy;
+  border: 3px solid navy;
+  border-left: none;
 
   border-top-right-radius: 20px;
   border-bottom-right-radius: 50px;
 `;
 
 const Icon = styled(FontAwesomeIcon)`
-  /* position: relative; */
   z-index: 100;
   font-size: 20px;
   color: navy;
 `;
-

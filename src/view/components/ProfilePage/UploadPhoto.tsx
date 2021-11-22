@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import ImageUploading, { ImageListType } from "react-images-uploading";
-
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../../state/root.reducer';
-import { Button, Row } from '../../../styles/reset.css';
 import { useHistory } from 'react-router-dom';
+
+import { RootState } from '../../../state/root.reducer';
 import { updatedPhoto } from '../../../state/slices/users.slice';
+import { Button, Row } from '../../../styles/reset.css';
+import { devices } from '../../../styles/responsive';
 
 interface Props {
     photoUrl: string,
@@ -82,6 +83,12 @@ const Image = styled.img`
   margin: 1rem;
   width: 8rem;
   height: 8rem;
+
+  @media ${devices.laptop} {
+    width: 20rem;
+    height: 20rem;
+    margin-bottom: 2.5rem;
+  }
 `;
 
 const Column = styled.div`
@@ -94,4 +101,10 @@ const MyButton = styled(Button)`
   box-shadow: none;
   width: auto;
   padding: 0.5rem 1rem;
+
+  @media ${devices.laptop} {
+    width: 20rem;
+    height: 5rem;
+    margin-left: 4rem;
+  }
 `;

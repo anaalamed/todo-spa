@@ -8,7 +8,6 @@ interface Props {
 }
 
 const ChooseColor: React.FC<Props> = ({ setColor, currentColor }) => {
-
     const colorsArr = ["lightcyan", "lightblue", "beige", "darkkhaki", "cadetblue"];
 
     return (
@@ -41,7 +40,3 @@ const Button = styled.button`
   border: 2px solid navy;
   border-color: ${(props) => props.border ? "red" : 'navy'};
 `
-
-
-
-

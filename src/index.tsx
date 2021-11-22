@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import store from "./state/configure.store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
-import { GlobalStyles } from "./styles/reset.css";
 import firebase from 'firebase/compat/app'
+
 import './initializeApp';
+import { GlobalStyles } from "./styles/reset.css";
 import { ReactReduxFirebaseProvider, firebaseReducer } from 'react-redux-firebase'
 import { createFirestoreInstance, firestoreReducer } from 'redux-firestore'
-
 
 const render = () => {
   const App = require("./view/App.view").default;

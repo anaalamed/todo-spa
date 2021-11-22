@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch, connect } from "react-redux";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import styled from 'styled-components';
-import { compose } from 'redux'
 
-import { getTodos } from '../../state/slices/todos.slice';
-import { RootState } from '../../state/root.reducer';
 import { getTodosFunc } from '../../initializeApp';
+import { RootState } from '../../state/root.reducer';
+import { getTodos } from '../../state/slices/todos.slice';
 import { Title, Separator } from '../../styles/reset.css';
 import Todo from '../components/TodosPage/Todo';
-import { firestoreConnect, useFirestoreConnect } from 'react-redux-firebase'
-import { getFirestore } from 'firebase/firestore';
 import SearchTodo from '../components/TodosPage/SearchTodo';
 import StartButtons from '../components/StartButtons';
-
+import { devices } from '../../styles/responsive';
 
 function TodosPage() {
-
     const dispatch = useDispatch();
-    const { todos, filteredTodos, is_loading, error_msg } = useSelector((state: RootState) => state.todos);
+    const { todos, filteredTodos } = useSelector((state: RootState) => state.todos);
     const { me, loggedIn } = useSelector((state: RootState) => state.users);
-
-    console.log(me.bgColor);
 
     useEffect(() => {
         if (me.email) {
@@ -52,7 +46,7 @@ function TodosPage() {
                                 <>
                                     <Title style={{ fontSize: 20 }}>Wait To Do...</Title>
                                     {filteredTodos.filter(todo => todo.completed === false).map((todo, i) => (<Todo key={i} order={i} todo={todo}></Todo>))}
-                                    {/* {todos.length === 0 ? null : <Separator></Separator>} */}
+                                    {filteredTodos.length === 0 ? null : <Separator></Separator>}
 
                                     <Title style={{ fontSize: 20 }}>Done!</Title>
                                     {filteredTodos.filter(todo => todo.completed === true).map((todo, i) => (<Todo key={i} order={i} todo={todo}></Todo>))}
@@ -72,22 +66,14 @@ function TodosPage() {
 }
 
 export default TodosPage;
-// export default compose(
-//     firestoreConnect(() => ['todos']), // or { collection: 'todos' }
-//     connect((state: RootState, props) => ({
-//         todos: state.firestore.ordered.todos
-//     }))
-// )(TodosPage)
 
-
-const Box = styled.main`
+const Box = styled.section`
   height: 100%;
   width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   background: ${(props) => props.color};
 `;
 
@@ -97,7 +83,7 @@ const Section = styled.div`
   align-items: center;
   justify-content: center;
   width: 80%;
-  padding-left: 10px;
+  /* padding-left: 10px; */
   padding-right: 10px;
   margin: 10px;
 
@@ -106,6 +92,10 @@ const Section = styled.div`
   border-top-left-radius: 50px;
   border-bottom-left-radius: 10px;
 
+  @media ${devices.laptop} {
+    width: 100%;
+    padding-bottom: 5rem;
+  }
 `;
 
 const MyText = styled.h2`
@@ -113,4 +103,3 @@ const MyText = styled.h2`
   color: greenyellow;
   font-weight: bold;
 `;
-

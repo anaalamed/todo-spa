@@ -1,19 +1,20 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../state/root.reducer";
-import { StyledText } from "../../styles/reset.css";
+import styled from "styled-components";
 import { getAuth, signOut } from "firebase/auth";
+
+import { RootState } from "../../state/root.reducer";
 import { loggedOut } from "../../state/slices/users.slice";
 import { removeTodos } from "../../state/slices/todos.slice";
+import { devices } from "../../styles/responsive";
 
 interface Props {
   setMenuVisible(boolean): void
 }
 
 const TopBar: React.FC<Props> = ({ setMenuVisible }) => {
-  const { me, loggedIn } = useSelector((state: RootState) => state.users);
+  const { loggedIn } = useSelector((state: RootState) => state.users);
   const dispatch = useDispatch();
   const auth = getAuth();
 
@@ -33,7 +34,6 @@ const TopBar: React.FC<Props> = ({ setMenuVisible }) => {
 
       {loggedIn ? (
         <>
-          {/* <SLink to="/profile" >My Profile</SLink> */}
           <Text onClick={handleLogOut}>Log Out</Text>
         </>
       ) : (
@@ -61,6 +61,10 @@ const Box = styled.div`
   justify-content: space-between;
   z-index: 101;
   width: 100%;
+
+  @media ${devices.laptop} {
+    display: none;
+  }
 `;
 
 const SLink = styled(Link)`
@@ -84,4 +88,3 @@ const Text = styled.p`
     text-decoration: underline;
   }
 `;
-

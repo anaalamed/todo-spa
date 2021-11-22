@@ -9,6 +9,7 @@ import SignUp from "./components/ProfilePage/SignUp";
 import LogIn from "./components/ProfilePage/LogIn";
 import UpdateProfile from "./components/ProfilePage/UpdateProfile";
 import ProfilePage from "./pages/Profile.page";
+import { devices } from '../styles/responsive'
 
 const App = () => {
   return (
@@ -23,7 +24,6 @@ const App = () => {
         <Route path="/updateProfile" exact component={UpdateProfile} />
 
       </Main>
-
       <Footer />
     </Box>
   );
@@ -41,7 +41,6 @@ const Box = styled.div`
 
 const Main = styled.main`
   margin-top: 8rem;
-  /* padding-top: 2rem; */
   flex: 1;
   width: 100%;
   height: 100%;

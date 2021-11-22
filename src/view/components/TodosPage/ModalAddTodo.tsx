@@ -1,15 +1,15 @@
-import { faCheck, faComment, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import Modal from 'react-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import Modal from 'react-modal';
+import { faCheck, faComment, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { addTodoFunc } from '../../../initializeApp';
 import { RootState } from '../../../state/root.reducer';
 import { addTodo } from '../../../state/slices/todos.slice';
-import { Button, Input, InputContainer, InputIcon, Row, StyledText, Title } from '../../../styles/reset.css';
 import ChooseColor from './ChooseColor';
+import { Button, Input, InputContainer, InputIcon, Row, StyledText, Title } from '../../../styles/reset.css';
 
 const customStyles = {
     content: {
@@ -127,7 +127,6 @@ const IsImportantBox = styled.button`
   width: 30px;
   height: 20px;
   margin: 12px;
-  /* margin-left: 10px; */
   align-self: flex-start;
 
   border-top-right-radius: 10px;

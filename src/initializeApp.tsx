@@ -5,8 +5,6 @@ import firebase from 'firebase/compat/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { getFirestore } from 'firebase/firestore' // <- needed if using firestore
-import { ReactReduxFirebaseProvider, firebaseReducer } from 'react-redux-firebase'
-import { createFirestoreInstance, firestoreReducer } from 'redux-firestore'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCbtjWerogpa2Xm2JGLZRE6yLh_7Hz7tTo",
@@ -23,8 +21,6 @@ const db = getFirestore();
 // firebase.firestore().settings({ timestanpsSnapsots: true })
 
 const storage = getStorage();
-
-
 
 const functions = getFunctions();
 

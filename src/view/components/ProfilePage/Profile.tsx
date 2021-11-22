@@ -2,17 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
-
-import { loggedOut } from "../../../state/slices/users.slice";
-import { removeTodos } from "../../../state/slices/todos.slice";
-import { RootState } from '../../../state/root.reducer';
-import { Button, Row, Title } from '../../../styles/reset.css';
 import { useHistory } from 'react-router-dom';
 
+import { RootState } from '../../../state/root.reducer';
+import { loggedOut } from "../../../state/slices/users.slice";
+import { removeTodos } from "../../../state/slices/todos.slice";
+import { Button, Row, Title } from '../../../styles/reset.css';
+import { devices } from '../../../styles/responsive';
 
 const Profile: React.FC = () => {
   const history = useHistory();
-
   const dispatch = useDispatch();
   const { me } = useSelector((state: RootState) => state.users);
   const auth = getAuth();
@@ -54,7 +53,6 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* align-items: center; */
   width: 80%;
   padding: 10px;
   margin-bottom: 5px;
@@ -65,6 +63,11 @@ const Box = styled.div`
   border-bottom-right-radius: 50px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 10px;
+
+  @media ${devices.laptop} {
+    width: 40%;
+    align-items: center;
+  }
 `;
 
 const StyledImage = styled.img`
@@ -78,15 +81,21 @@ const StyledImage = styled.img`
 const Field = styled.span`
   color: navy;
   margin: 5px;
+  text-align: center;
 `;
 
 const ValueField = styled.span`
   font-size: 25px;
+  text-align: center;
 `;
 
 const ProfileButton = styled(Button)`
   background: navy;
   width: 40%;
   color: greenyellow;
-`;
 
+  @media ${devices.laptop} {
+    width: 100%;
+    padding: 2rem 1.5rem;
+  }
+`;

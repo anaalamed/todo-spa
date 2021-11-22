@@ -3,12 +3,12 @@ import { useForm, Controller } from "react-hook-form";
 import styled from 'styled-components';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
-
-import { loggedIn } from '../../../state/slices/users.slice'
-import { getUserFunc } from '../../../initializeApp'
-import { Button, Input, InputContainer, InputIcon, StyledText, Title } from "../../../styles/reset.css";
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons'
 import { useHistory } from "react-router-dom";
+
+import { getUserFunc } from '../../../initializeApp'
+import { loggedIn } from '../../../state/slices/users.slice'
+import { Button, Input, InputContainer, InputIcon, StyledText, Title } from "../../../styles/reset.css";
 
 export default function LoginScreen() {
     const history = useHistory();
@@ -98,7 +98,6 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* padding: 10px; */
   width: 100%;
 `;
 
