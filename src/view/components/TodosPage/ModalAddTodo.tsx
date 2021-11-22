@@ -139,6 +139,6 @@ const IsImportantBox = styled.button`
 const Icon = styled(FontAwesomeIcon)`
   color: navy;
   font-weight: bold;
-  margin-right: 3rem;
+  margin: 1rem;
   font-size: 2rem;
 `;

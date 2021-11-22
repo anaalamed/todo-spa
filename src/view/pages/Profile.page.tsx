@@ -10,6 +10,7 @@ import SignUp from "../components/ProfilePage/SignUp";
 import UpdateProfile from "../components/ProfilePage/UpdateProfile";
 
 import '../../assets/logo.png'
+import StartButtons from "../components/StartButtons";
 
 const ProfilePage = () => {
   const history = useHistory();
@@ -17,15 +18,9 @@ const ProfilePage = () => {
 
   return (
     <Main>
-      <Title style={{ margin: 30 }}>My profile</Title>
+      <Title style={{ margin: 30 }}>Welcome to To Do List App</Title>
 
-
-      {loggedIn ? <Profile></Profile> : (
-        <Row style={{ margin: 30 }}>
-          <Button onClick={() => history.push('/signup')}>Sign Up</Button>
-          <Button onClick={() => history.push('/login')}>Log In</Button>
-        </Row>
-      )}
+      {loggedIn ? <Profile></Profile> : (<StartButtons></StartButtons>)}
 
       <Logo src="logo.png"></Logo>
     </Main>

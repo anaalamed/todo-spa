@@ -5,6 +5,7 @@ const Footer = () => {
   return (
     <Box>
       Todo App
+      <Logo src="myLogo.png"></Logo>
     </Box>
   );
 };
@@ -15,9 +16,15 @@ const Box = styled.footer`
   height: 100px;
   border-top: 1px solid #eaeaea;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  color: inherit;
+  color: navy;
+  font-weight: bold;
   text-decoration: none;
   background: greenyellow;
+`;
+
+const Logo = styled.img`
+  width: 5rem;
+  border-radius: 0.6rem;
 `;

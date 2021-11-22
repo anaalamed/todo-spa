@@ -3,19 +3,15 @@ import { useSelector, useDispatch, connect } from "react-redux";
 import styled from 'styled-components';
 import { compose } from 'redux'
 
-// import SearchTodo from '../components/TodosScreen/SearchTodo';
-// import Todo from '../components/TodosScreen/Todo';
-
-// import { Title, Separator, Button, ButtonText } from '../constants/StyledComponents';
-
 import { getTodos } from '../../state/slices/todos.slice';
 import { RootState } from '../../state/root.reducer';
 import { getTodosFunc } from '../../initializeApp';
-import { Title } from '../../styles/reset.css';
+import { Title, Separator } from '../../styles/reset.css';
 import Todo from '../components/TodosPage/Todo';
 import { firestoreConnect, useFirestoreConnect } from 'react-redux-firebase'
 import { getFirestore } from 'firebase/firestore';
 import SearchTodo from '../components/TodosPage/SearchTodo';
+import StartButtons from '../components/StartButtons';
 
 const firestore = getFirestore();
 
@@ -24,8 +20,6 @@ function TodosPage() {
 
     const dispatch = useDispatch();
     const { todos, filteredTodos, is_loading, error_msg } = useSelector((state: RootState) => state.todos);
-    // const { filteredTodos, is_loading, error_msg } = useSelector((state: RootState) => state.todos);
-
     const { me, loggedIn, bgColor } = useSelector((state: RootState) => state.users);
 
     useEffect(() => {
@@ -49,7 +43,7 @@ function TodosPage() {
 
             {loggedIn ? (<SearchTodo></SearchTodo>) : null}
 
-            {/* <Separator /> */}
+            <Separator />
             <Section>
                 {loggedIn ?
                     (
@@ -66,9 +60,12 @@ function TodosPage() {
                             ) : null}
                         </>
                     ) :
-                    (<MyText>Please log in to see your todos here! </MyText>)}
+                    (<>
+                        <MyText>Please log in to see your todos here! </MyText>
+                        <StartButtons></StartButtons>
+                    </>)}
 
-                {/* {loggedIn && todos.length === 0 ? <MyText>There is no to do yet... Please add!</MyText> : null} */}
+                {loggedIn && todos.length === 0 ? <MyText>There is no to do yet... Please add!</MyText> : null}
             </Section>
         </Box>
     );

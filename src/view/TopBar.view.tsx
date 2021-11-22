@@ -1,30 +1,36 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../state/root.reducer";
-import { margin } from "polished";
 import { Row, StyledText } from "../styles/reset.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import ModalAddTodo from "./components/TodosPage/ModalAddTodo";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MenuDropdown from "./components/MenuDropdown";
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 
 const TopBar = () => {
+  let location = useLocation();
   const { me, loggedIn } = useSelector((state: RootState) => state.users);
-  const [isAddVisible, setAddVisible] = useState(false)
+  const [isMenuVisible, setMenuVisible] = useState(false);
+
 
   return (
     <Header>
-      <SLink to="/"> <Logo src="logo.png" alt="Todo logo" /></SLink>
-      <SLink to="/">Home</SLink>
-      <SLink to="/todos">Todos</SLink>
 
-      <Row style={{ justifyContent: "flex-end" }}>
+
+      {/* <SLink to="/">Home</SLink> */}
+      {/* <SLink to="/todos">Todos</SLink> */}
+      {loggedIn && (location.pathname === '/todos') ? (<ModalAddTodo></ModalAddTodo>) : (<SLink to="/"><Logo src="logo.png" alt="Todo logo" /></SLink>)}
+
+      <Row onClick={() => setMenuVisible(!isMenuVisible)}
+        style={{ justifyContent: "flex-end", marginRight: "1rem" }}>
         <HelloText style={{ color: "navy", fontWeight: "bold" }}>Hi, {me.name || "guest"}</HelloText>
-        {loggedIn ? (<ModalAddTodo></ModalAddTodo>) : null}
+        {me.photoURL ? (<Logo src={me.photoURL} ></Logo>) : (<Icon icon={faUser} />)}
       </Row>
+
+      {isMenuVisible ? <MenuDropdown setMenuVisible={setMenuVisible}></MenuDropdown> : null}
 
     </Header>
   );
@@ -37,7 +43,7 @@ const Header = styled.header`
   position: fixed;
   left: 0;
   right: 0;
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -49,7 +55,7 @@ const SLink = styled(Link)`
   color: navy;
   font-weight: bold;
   text-decoration: none;
-  margin-right: 2rem;
+  margin-right: 1rem;
   :hover {
     text-decoration: underline;
   }
@@ -59,8 +65,13 @@ const Logo = styled.img`
   width: 4rem;
   cursor: pointer;
   border-radius: 50%;
+  margin: 1rem;
 `;
 
 const HelloText = styled.p`
-  margin-right: 2rem;
+  margin: 1rem;
+`;
+
+const Icon = styled(FontAwesomeIcon)`
+  margin-right: 1rem;
 `;

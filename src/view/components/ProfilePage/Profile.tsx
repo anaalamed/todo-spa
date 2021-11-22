@@ -29,7 +29,7 @@ const Profile: React.FC = () => {
 
   return (
     <>
-      {/* <Title>My Profile</Title> */}
+      <Title>My Profile</Title>
       <Box>
         <StyledImage src={me.photoURL || defaultProfileImage} ></StyledImage>
 
