@@ -33,7 +33,7 @@ const TopBar: React.FC<Props> = ({ setMenuVisible }) => {
 
       {loggedIn ? (
         <>
-          <SLink to="/profile" >My Profile</SLink>
+          {/* <SLink to="/profile" >My Profile</SLink> */}
           <Text onClick={handleLogOut}>Log Out</Text>
         </>
       ) : (

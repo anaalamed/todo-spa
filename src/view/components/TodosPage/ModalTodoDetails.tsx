@@ -79,7 +79,7 @@ const ColorView = styled.div`
 const TodoText = styled.h2`
   color: navy;
   font-size: 20px;
-  width: 20rem;
+  /* width: 80%; */
   font-weight: bold;
-  /* background: pink; */
+  flex: 1;
 `;

@@ -63,6 +63,7 @@ const SLink = styled(Link)`
 
 const Logo = styled.img`
   width: 4rem;
+  height: 4rem;
   cursor: pointer;
   border-radius: 50%;
   margin: 1rem;

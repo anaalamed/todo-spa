@@ -53,11 +53,6 @@ const Profile: React.FC<Props> = ({ todo, order }) => {
 export default Profile;
 
 const Box = styled.div`
-  color: white;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background: #49499c;
   background: ${props => props.color};
   border: 1px solid navy;
 
@@ -65,7 +60,7 @@ const Box = styled.div`
   padding: 10px;
   padding-left: 20px;
   padding-right: 15px;
-  margin-bottom: 5px;
+  margin: 5px;
 
   border-top-right-radius: 10px;
   border-bottom-right-radius: 50px;
@@ -77,6 +72,8 @@ const Main = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
+  width: 100%;
 `;
 
 const IsDoneBox = styled.button`
@@ -98,7 +95,7 @@ const Button = styled.button`
   padding: 2px;
   border-radius: 10px;
   width: 20px;
-  margin-right: 5px;
+  /* margin-right: 5px; */
   border: 1px solid navy;
 
   border-top-right-radius: 10px;
@@ -106,6 +103,7 @@ const Button = styled.button`
   border-top-left-radius: 50px;
   border-bottom-left-radius: 10px;
 
-  position: absolute;
-  left: 80%;
+  align-self: flex-start;
+  justify-self: end;  
+  margin-left: auto;
 `;

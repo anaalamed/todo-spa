@@ -9,13 +9,17 @@ import { updatedProfile, bgColorChoosen } from "../../../state/slices/users.slic
 import { updateUserFunc } from '../../../initializeApp';
 import { Button, Input, InputContainer, InputIcon, StyledText, Title } from "../../../styles/reset.css";
 import { faUser, faMobile, faInfo } from "@fortawesome/free-solid-svg-icons";
+import UploadPhoto from "./UploadPhoto";
+import { useHistory } from "react-router-dom";
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 // import UploadPhoto from '../../../components/ProfileScreen/UploadPhoto';
 // import ColorPicker from '../components/ProfileScreen/ColorPicker';
 
 
 export default function UpdateProfileScreen() {
-
+    const history = useHistory();
     const dispatch = useDispatch();
+
     const { control, handleSubmit, formState: { errors } } = useForm();
     const { me, bgColor } = useSelector((state: RootState) => state.users);
     const [color, setColor] = useState(bgColor);
@@ -25,6 +29,7 @@ export default function UpdateProfileScreen() {
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
     const phoneRegex = /^[0-9()-]+$/;
     const urlRegex = /^(https?:\/\/)?[0-9a-zA-Z]+\.[-_0-9a-zA-Z]+\.[0-9a-zA-Z]+$/;
+    const { id } = useSelector((state: RootState) => state.users.me);
 
     const onSubmit = (data) => {
         const auth = getAuth();
@@ -33,6 +38,7 @@ export default function UpdateProfileScreen() {
             .then(res => {
                 dispatch(updatedProfile({ id: me.id, email: me.email, photoURL: photoUrl, ...data }))
                 dispatch(bgColorChoosen(color));
+                history.push('/');
             })
             .catch((error) => {
                 console.log(error);
@@ -43,7 +49,7 @@ export default function UpdateProfileScreen() {
         <>
             <Title>Update Profile</Title>
             <Box>
-                {/* <UploadPhoto photoUrl={photoUrl} setPhotoUrl={setPhotoUrl}></UploadPhoto> */}
+                <UploadPhoto photoUrl={photoUrl} setPhotoUrl={setPhotoUrl}></UploadPhoto>
                 <Form>
                     <Controller
                         name="name"
@@ -119,9 +125,9 @@ export default function UpdateProfileScreen() {
 
 const Box = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
   width: 100%;
 `;
 
@@ -137,7 +143,7 @@ const About = styled.textarea`
   background: #d5f6c6;
   border: 1px solid navy ;
   color: navy;
-  padding: 15px;
+  padding: 20px;
   padding-left: 50px;
   width: 70%;
   margin: 10px;
@@ -149,7 +155,7 @@ const About = styled.textarea`
   border-bottom-left-radius: 10px;
 
   box-shadow: 10px 5px 5px greenyellow;
-
+  overflow: hidden;
 `;
 
 

@@ -55,16 +55,13 @@ const Box = styled.div`
   display: flex;
   justify-content: flex-end;
 
-  padding: 10px;
-  padding-left: 20px;
   padding-right: 15px;
-  margin-bottom: 5px;
 `;
 
 const Tools = styled.div`
   position: relative;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: space-between;
   align-items: center;
 `;

@@ -29,6 +29,9 @@ const users_slice = createSlice({
     updatedProfile: (state, action) => {
       state.me = action.payload;
     },
+    updatedPhoto: (state, action) => {
+      state.me.photoURL = action.payload;
+    },
     bgColorChoosen: (state, action) => {
       state.bgColor = action.payload;
     },
@@ -36,7 +39,7 @@ const users_slice = createSlice({
 });
 
 export default users_slice.reducer;
-export const { loggedIn, loggedOut, updatedProfile, bgColorChoosen } = users_slice.actions;
+export const { loggedIn, loggedOut, updatedProfile, updatedPhoto, bgColorChoosen } = users_slice.actions;
 
 
 
