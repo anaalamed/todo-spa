@@ -4,6 +4,7 @@ node_modules
 .pnp.js
 
 .firebaserc
+.firebase
 database.rules.json
 firestore.indexes.json
 firestore.rules

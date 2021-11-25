@@ -101,6 +101,11 @@ export default function SignupScreen() {
 
                     <Button title="Submit" onClick={handleSubmit(onSubmit)} >Sign Up</Button>
                 </Form>
+
+                <StyledText style={{ margin: 15 }}>Already have an account? &nbsp;
+                    <Link onClick={() => history.push("/login")}>Log In</Link>
+                </StyledText>
+                <img width="250px" src="logo.png" />
             </Box>
         </Main>
 
@@ -109,6 +114,7 @@ export default function SignupScreen() {
 
 const Box = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -120,4 +126,9 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const Link = styled.span`
+  text-decoration: underline;
+  cursor: pointer;
 `;

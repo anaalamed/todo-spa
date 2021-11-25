@@ -75,6 +75,10 @@ export const Separator = styled.div`
   width: 80%;
   color: black;
   background: #7c7a7aaa;
+
+  @media ${devices.laptop} {
+    width: 55%;
+  }
 `;
 
 export const StyledText = styled.p`

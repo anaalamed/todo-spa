@@ -57,6 +57,7 @@ function TodosPage() {
                     (<>
                         <MyText>Please log in to see your todos here! </MyText>
                         <StartButtons></StartButtons>
+                        <img width="250px" src="logo.png" />
                     </>)}
 
                 {loggedIn && todos.length === 0 ? <MyText>There is no to do yet... Please add!</MyText> : null}
@@ -68,7 +69,7 @@ function TodosPage() {
 export default TodosPage;
 
 const Box = styled.section`
-  height: 100%;
+  min-height: 85vh;
   width: 100%;
   flex: 1;
   display: flex;
