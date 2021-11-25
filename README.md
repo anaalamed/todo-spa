@@ -1,5 +1,7 @@
-# react-ts-template
+# Todo App  
+Todo App using TypeScript, React, Redux and Firebase services.   
 
-Template using TypeScript, React, Redux, styled-components,  react-router-dom
+Deploy - https://anaalamed-todo-mobile.web.app
+Mobile App - https://github.com/anaalamed/todo-mobile
 
-Remove git connection - rm -rf .git
+
