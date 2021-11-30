@@ -61,6 +61,7 @@ const Button = styled.button`
   padding: 10px;
   border: 3px solid navy;
   border-left: none;
+  cursor: pointer;
 
   border-top-right-radius: 20px;
   border-bottom-right-radius: 50px;

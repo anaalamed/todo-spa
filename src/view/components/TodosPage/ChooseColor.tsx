@@ -39,4 +39,5 @@ const Button = styled.button`
   height: 25px;
   border: 2px solid navy;
   border-color: ${(props) => props.border ? "red" : 'navy'};
+  cursor: pointer;
 `

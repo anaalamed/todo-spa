@@ -55,6 +55,7 @@ export const Button = styled.button`
   margin: 20px;
   color: navy;
   font-weight: bold;
+  cursor: pointer;
 
   border-top-right-radius: 10px;
   border-bottom-right-radius: 50px;
@@ -117,6 +118,7 @@ export const TodoIconButton = styled.button`
   width: 20px;
   margin: 2px;
   border: 1px solid navy;
+  cursor: pointer;
 
   border-top-right-radius: 10px;
   border-bottom-right-radius: 50px;

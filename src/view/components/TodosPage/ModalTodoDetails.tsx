@@ -81,4 +81,5 @@ const TodoText = styled.h2`
   font-size: 20px;
   font-weight: bold;
   flex: 1;
+  cursor: pointer;
 `;

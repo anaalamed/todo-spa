@@ -102,6 +102,7 @@ const Button = styled.button`
   border-radius: 10px;
   width: 20px;
   border: 1px solid navy;
+  cursor: pointer;
 
   border-top-right-radius: 10px;
   border-bottom-right-radius: 50px;

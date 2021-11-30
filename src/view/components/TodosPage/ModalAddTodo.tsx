@@ -140,4 +140,5 @@ const Icon = styled(FontAwesomeIcon)`
   font-weight: bold;
   margin: 1rem;
   font-size: 2rem;
+  cursor: pointer;
 `;
